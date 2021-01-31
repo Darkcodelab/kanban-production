@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PE EMPRO | Fabric Inspection Board</title>
+    <%- include("./partials/head.ejs") %>
+  </head>
+  <body>
+    <div class="container">
+      <header class="board__header">
+        <h2>Fabric Inspection Board</h2>
+        <a href="/" class="nav-link">Home</a>
+      </header>
+      <main class="board__main fib__main">
+        <div class="board__todo">
+          <h3>Todo</h3>
+          <ul class="board__card">
+            <li class="card__li">
+              <div class="card__text">Make Use Of Your Brain</div>
+              <div class="card__completed">completed</div>
+            </li>
+            <li class="card__li">Fuck You</li>
+          </ul>
+        </div>
+        <div class="board_inprogress">
+          <h3>In Progess</h3>
+        </div>
+        <div class="board__completed">
+          <h3>Completed</h3>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
