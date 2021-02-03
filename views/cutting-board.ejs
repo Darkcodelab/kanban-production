@@ -8,7 +8,51 @@
   </head>
   <body>
     <div class="container">
-      <h1>Cutting Board</h1>
+      <header class="board__header">
+        <h2>Cutting Board</h2>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/available-products" class="nav-link">Available Products</a>
+      </header>
+      <main class="board__main fib__main">
+        <div class="board__todo">
+          <h3>Todo</h3>
+          <ul class="board__card">
+            <% for(let i=0; i<data.length; i++) {%> 
+              <li class="card__li">
+                <% for(let key in data[i]) {%>
+                    <div><b><%=key %>:</b>  <%=data[i][key] %>  </div>
+                <% } %>
+                <div class="card__completed"><a href="/cutting-board/<%=data[i].id%>">Completed</a></div>
+              </li>
+            <%}%>
+          </ul>
+        </div>
+        <div class="board_inprogress">
+          <h3>In Progess</h3>
+          <ul class="board__card">
+            <% for(let i=0; i<inProgress.length; i++) {%> 
+              <li class="card__li">
+                <% for(let key in inProgress[i]) {%> 
+                    <div><b><%=key %>:</b>  <%=inProgress[i][key] %>  </div>
+                <% } %>
+                <div class="card__completed"><a href="/cutting-board/completed/<%=inProgress[i].id%>">Completed</a></div>
+              </li>
+            <%}%>
+          </ul>
+        </div>
+        <div class="board__completed">
+          <h3>Completed</h3>
+          <ul class="board__card">
+            <% for(let i=0; i<completed.length; i++) {%> 
+              <li class="card__li">
+                <% for(let key in completed[i]) {%> 
+                    <div><b><%=key %>:</b>  <%=completed[i][key] %>  </div>
+                <% } %>
+              </li>
+            <%}%>
+          </ul>
+        </div>
+      </main>
     </div>
   </body>
 </html>

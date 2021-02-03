@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PE EMPRO | Fabric Inspection Board</title>
+    <title>PE EMPRO | Finishing Board</title>
     <%- include("./partials/head.ejs") %>
   </head>
   <body>
     <div class="container">
       <header class="board__header">
-        <h2>Fabric Inspection Board</h2>
+        <h2>Finishing Board</h2>
         <a href="/" class="nav-link">Home</a>
       </header>
       <main class="board__main fib__main">
@@ -21,7 +21,7 @@
                 <% for(let key in data[i]) {%>
                     <div><b><%=key %>:</b>  <%=data[i][key] %>  </div>
                 <% } %>
-                <div class="card__completed"><a href="/fabric-inspection-board/<%=data[i].id%>">Completed</a></div>
+                <div class="card__completed"><a href="/finishing-board/<%=data[i].id%>">Completed</a></div>
               </li>
             <%}%>
           </ul>
@@ -34,7 +34,7 @@
                 <% for(let key in inProgress[i]) {%> 
                     <div><b><%=key %>:</b>  <%=inProgress[i][key] %>  </div>
                 <% } %>
-                <div class="card__completed"><a href="/fabric-inspection-board/completed/<%=inProgress[i].id%>">Completed</a></div>
+                <div class="card__completed"><a href="/finishing-board/completed/<%=inProgress[i].id%>">Completed</a></div>
               </li>
             <%}%>
           </ul>

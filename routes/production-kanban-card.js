@@ -14,20 +14,13 @@ router.get("/", (req, res) => {
 //Method - 'POST
 //Route - /production-kanban-card
 router.post("/", async (req, res) => {
-  let newCard = {
-    customer: req.body.customer,
-    supplier: req.body.supplier,
-    linenumber: req.body.linenumber,
-    stylenumber: req.body.stylenumber,
-    colour: req.body.colour,
-    size: req.body.size,
-    date: req.body.date,
-    requireddate: req.body.requireddate,
-    quantity: req.body.quantity,
-    id: shortid.generate(),
-  };
+  let newCard = {};
+  Object.keys(req.body).forEach(function (prop) {
+    newCard[prop] = req.body[prop];
+  });
+  newCard.id = shortid.generate();
   let card = await KanbanCard.create(newCard);
-  res.send("GOT A POST REQ");
+  res.redirect("/production-kanban-card");
 });
 
 module.exports = router;

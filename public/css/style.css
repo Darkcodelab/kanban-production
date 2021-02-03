@@ -181,6 +181,10 @@ input[type="submit"] {
 }
 
 .board__main > div {
+  overflow: scroll;
+}
+
+.board__main > div {
   background: white;
   border-radius: 5px;
   height: 90vh;
@@ -197,9 +201,57 @@ input[type="submit"] {
 .card__li {
   padding: 10px;
   border-radius: 5px;
-  color: white;
-  background: rgb(253, 88, 88);
+  background: rgb(238, 238, 238);
   margin: 1.4em 0;
 }
 
+.card__li b {
+  font-size: 18px;
+  margin-right: 16px;
+}
+
+.card__completed {
+  margin-top: 16px;
+  padding: 12px;
+  background: black;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.card__completed a {
+  color: white;
+  display: block;
+}
+
 /*Fabric Inspection Board*/
+
+/*Available Products*/
+
+.available__main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.dept {
+  margin: 2em 0;
+}
+
+.dept h3 {
+  text-align: center;
+}
+
+/*Available Products*/
+
+#customFields {
+  display: block;
+  margin: 1em 0;
+  padding: 12px;
+  background: black;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}

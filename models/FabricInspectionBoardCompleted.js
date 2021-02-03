@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let AvailableProductsSchema = new Schema(
+let FabricInspectionBoardCompletedSchema = new Schema(
   {
     customer: {
       type: String,
@@ -43,12 +43,15 @@ let AvailableProductsSchema = new Schema(
       type: String,
       required: true,
     },
-    dept: {
-      type: String,
-      required: true,
+    published: {
+      type: Date,
+      default: Date.now,
     },
   },
   { strict: false }
 );
 
-module.exports = mongoose.model("AvailableProducts", AvailableProductsSchema);
+module.exports = mongoose.model(
+  "FabricInspectionCompletedCard",
+  FabricInspectionBoardCompletedSchema
+);
