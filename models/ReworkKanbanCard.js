@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
-let FinishingBoardInProgressSchema = new Schema(
+let ReworkKanbanCardSchema = new Schema(
   {
     customer: {
       type: String,
@@ -37,7 +37,4 @@ let FinishingBoardInProgressSchema = new Schema(
   { strict: false }
 );
 
-module.exports = mongoose.model(
-  "FinishingBoardInProgress",
-  FinishingBoardInProgressSchema
-);
+module.exports = mongoose.model("ReworkKanbanCard", ReworkKanbanCardSchema);

@@ -12,7 +12,10 @@ let AvailableProducts = require("../models/AvailableProducts");
 router.get("/", async (req, res) => {
   let Kanbandata = await KanbanCard.find({}).lean().limit(5);
   let inProgressData = await FabricInspectionBoardInProgress.find({}).lean();
-  let completedData = await FabricInspectionBoardCompleted.find({}).lean();
+  let completedData = await FabricInspectionBoardCompleted.find({})
+    .sort({ published: -1 })
+    .limit(5)
+    .lean();
   res.render(path.join(__dirname, "../", "/views/fabric-inspection-board"), {
     data: Kanbandata,
     inProgress: inProgressData,

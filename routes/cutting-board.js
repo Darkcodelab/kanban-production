@@ -12,7 +12,10 @@ let AvailableProducts = require("../models/AvailableProducts");
 router.get("/", async (req, res) => {
   let cuttingData = await cuttingBoard.find({}).lean();
   let inProgress = await CuttingBoardInProgress.find({}).lean();
-  let completed = await CuttingBoardCompleted.find({}).lean();
+  let completed = await CuttingBoardCompleted.limit(5)
+    .find({})
+    .sort({ published: -1 })
+    .lean();
   res.render(path.join(__dirname, "../", "/views/cutting-board"), {
     data: cuttingData,
     inProgress,

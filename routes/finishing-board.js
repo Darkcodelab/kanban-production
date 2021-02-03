@@ -10,7 +10,10 @@ let FinishingBoardCompleted = require("../models/FinishingBoardCompleted");
 router.get("/", async (req, res) => {
   let data = await FinishingBoard.find({}).lean();
   let inProgress = await FinishingBoardInProgress.find({}).lean();
-  let completed = await FinishingBoardCompleted.find({}).lean();
+  let completed = await FinishingBoardCompleted.find({})
+    .sort({ published: -1 })
+    .limit(5)
+    .lean();
   res.render(path.join(__dirname, "../", "/views/finishing-board"), {
     data,
     inProgress,

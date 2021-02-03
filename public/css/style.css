@@ -255,3 +255,10 @@ input[type="submit"] {
   outline: none;
   cursor: pointer;
 }
+
+.analyze-logo {
+  max-width: 100%;
+  align-self: flex-end;
+  margin-right: 30px;
+  margin-top: 14px;
+}

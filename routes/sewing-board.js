@@ -6,17 +6,23 @@ const SewingBoardInProgress = require("../models/SewingBoardInProgress");
 const SewingBoardCompleted = require("../models/SewingBoardCompleted");
 const AvailableProducts = require("../models/AvailableProducts");
 let FinishingBoard = require("../models/FinishingBoard");
+let ReworkKanbanCard = require("../models/ReworkKanbanCard");
 
 //Method = GET
 //Route = /sewing-board
 router.get("/", async (req, res) => {
   let data = await SewingBoard.find({}).lean();
+  let reworkdata = await ReworkKanbanCard.find({}).lean();
   let inProgress = await SewingBoardInProgress.find({}).lean();
-  let completed = await SewingBoardCompleted.find({}).lean();
+  let completed = await SewingBoardCompleted.find({})
+    .sort({ published: -1 })
+    .limit(5)
+    .lean();
   res.render(path.join(__dirname, "../", "/views/sewing-board"), {
     data,
     inProgress,
     completed,
+    reworkdata,
   });
 });
 

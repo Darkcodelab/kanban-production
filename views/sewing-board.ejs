@@ -11,6 +11,7 @@
       <header class="board__header">
         <h2>Sewing Board</h2>
         <a href="/" class="nav-link">Home</a>
+        <a href="/available-products" class="nav-link">Available Products</a>
       </header>
       <main class="board__main fib__main">
         <div class="board__todo">
@@ -22,6 +23,14 @@
                     <div><b><%=key %>:</b>  <%=data[i][key] %>  </div>
                 <% } %>
                 <div class="card__completed"><a href="/sewing-board/<%=data[i].id%>">Completed</a></div>
+              </li>
+            <%}%>
+            <% for(let i=0; i<reworkdata.length; i++) {%> 
+              <li class="card__li">
+                <% for(let key in reworkdata[i]) {%>
+                    <div><b><%=key %>:</b>  <%=reworkdata[i][key] %>  </div>
+                <% } %>
+                <div class="card__completed"><a href="/sewing-board/<%=reworkdata[i].id%>">Completed</a></div>
               </li>
             <%}%>
           </ul>
