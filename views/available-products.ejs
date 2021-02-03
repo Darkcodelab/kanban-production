@@ -50,8 +50,16 @@
           </ul>
         </div>
         <div class="dept">
-          <h3>Fabric</h3>
-          <ul></ul>
+          <h3>finishing</h3>
+          <ul>
+             <% for(let i=0; i<finishing.length; i++) {%> 
+              <li class="card__li">
+                <% for(let key in finishing[i]) {%> 
+                    <div><b><%=key %></b>  <%=finishing[i][key] %>  </div>
+                <% } %>
+              </li>
+            <%}%>
+          </ul>
         </div>
       </main>
     </div>
