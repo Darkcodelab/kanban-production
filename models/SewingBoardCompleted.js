@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+var currentTime = new Date();
+var currentOffset = currentTime.getTimezoneOffset();
+var ISTOffset = 330; // IST offset UTC +5:30
+var ISTTime = new Date(
+  currentTime.getTime() + (ISTOffset + currentOffset) * 60000
+);
+
 let SewingBoardInProgressSchema = new Schema(
   {
     customer: {
@@ -35,7 +42,7 @@ let SewingBoardInProgressSchema = new Schema(
     },
     published: {
       type: Date,
-      default: Date.now,
+      default: ISTTime.toLocaleString(),
     },
   },
   { strict: false }

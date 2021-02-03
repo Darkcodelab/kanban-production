@@ -58,6 +58,7 @@ router.get("/completed/:id", async (req, res) => {
   newCompletedCard.dept = "sewing";
   let availableCard = await AvailableProducts.create(newCompletedCard);
   let FinishingBoardCard = await FinishingBoard.create(newCompletedCard);
+  delete newCompletedCard._id;
   let performance = await PerformanceAnalyze.create(newCompletedCard);
   res.redirect("/sewing-board");
 });

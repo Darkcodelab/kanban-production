@@ -258,7 +258,7 @@ input[type="submit"] {
 
 .analyze-logo {
   max-width: 100%;
-  align-self: flex-end;
-  margin-right: 30px;
-  margin-top: 14px;
+  width: 50%;
+  align-self: center;
+  margin-top: 120px;
 }

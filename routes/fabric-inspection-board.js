@@ -27,6 +27,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   let id = req.params.id;
   let deletedCard = await KanbanCard.findOneAndDelete({ id: id }).lean();
+  console.log(deletedCard);
   let newInProgressCard = {};
   Object.keys(deletedCard).forEach(function (prop) {
     if (prop != "_id" || prop != "__v")
@@ -54,6 +55,7 @@ router.get("/completed/:id", async (req, res) => {
   let cuttingCard = await cuttingBoardTodo.create(newCompletedCard);
   newCompletedCard.dept = "fabric";
   let availableCard = await AvailableProducts.create(newCompletedCard);
+  delete newCompletedCard._id;
   let performance = await PerformanceAnalyze.create(newCompletedCard);
 
   res.redirect("/fabric-inspection-board");
