@@ -7,6 +7,7 @@ const SewingBoardCompleted = require("../models/SewingBoardCompleted");
 const AvailableProducts = require("../models/AvailableProducts");
 let FinishingBoard = require("../models/FinishingBoard");
 let ReworkKanbanCard = require("../models/ReworkKanbanCard");
+let PerformanceAnalyze = require("../models/PerformanceAnalyze");
 
 //Method = GET
 //Route = /sewing-board
@@ -57,6 +58,7 @@ router.get("/completed/:id", async (req, res) => {
   newCompletedCard.dept = "sewing";
   let availableCard = await AvailableProducts.create(newCompletedCard);
   let FinishingBoardCard = await FinishingBoard.create(newCompletedCard);
+  let performance = await PerformanceAnalyze.create(newCompletedCard);
   res.redirect("/sewing-board");
 });
 

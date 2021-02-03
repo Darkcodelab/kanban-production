@@ -6,6 +6,7 @@ const CuttingBoardInProgress = require("../models/CuttingBoardInProgress");
 const CuttingBoardCompleted = require("../models/CuttingBoardCompleted");
 let sewingBoard = require("../models/SewingBoard");
 let AvailableProducts = require("../models/AvailableProducts");
+let PerformanceAnalyze = require("../models/PerformanceAnalyze");
 
 //Method = GET
 //Route = /cutting-board
@@ -55,6 +56,7 @@ router.get("/completed/:id", async (req, res) => {
   });
   newCompletedCard.dept = "cutting";
   let availableCard = await AvailableProducts.create(newCompletedCard);
+  let performance = await PerformanceAnalyze.create(newCompletedCard);
   res.redirect("/cutting-board");
 });
 

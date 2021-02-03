@@ -6,6 +6,7 @@ const FabricInspectionBoardInProgress = require("../models/FabricInspectionBoard
 const FabricInspectionBoardCompleted = require("../models/FabricInspectionBoardCompleted");
 const cuttingBoardTodo = require("../models/cuttingBoardTodo");
 let AvailableProducts = require("../models/AvailableProducts");
+let PerformanceAnalyze = require("../models/PerformanceAnalyze");
 
 //Method = GET
 //Route = /fabric-inspection-board
@@ -53,6 +54,7 @@ router.get("/completed/:id", async (req, res) => {
   let cuttingCard = await cuttingBoardTodo.create(newCompletedCard);
   newCompletedCard.dept = "fabric";
   let availableCard = await AvailableProducts.create(newCompletedCard);
+  let performance = await PerformanceAnalyze.create(newCompletedCard);
 
   res.redirect("/fabric-inspection-board");
 });

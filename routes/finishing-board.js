@@ -6,6 +6,7 @@ let AvailableProducts = require("../models/AvailableProducts");
 let FinishingBoard = require("../models/FinishingBoard");
 let FinishingBoardInProgress = require("../models/FinishingBoardInProgress");
 let FinishingBoardCompleted = require("../models/FinishingBoardCompleted");
+let PerformanceAnalyze = require("../models/PerformanceAnalyze");
 
 router.get("/", async (req, res) => {
   let data = await FinishingBoard.find({}).lean();
@@ -52,6 +53,8 @@ router.get("/completed/:id", async (req, res) => {
     dept: "sewing",
   });
   let availableCard = await AvailableProducts.create(newCompletedCard);
+  newCompletedCard.dept = "finishing";
+  let performance = await PerformanceAnalyze.create(newCompletedCard);
   res.redirect("/finishing-board");
 });
 

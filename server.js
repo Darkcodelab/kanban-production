@@ -31,5 +31,6 @@ app.use("/sewing-board", require("./routes/sewing-board"));
 app.use("/available-products", require("./routes/available-products"));
 app.use("/finishing-board", require("./routes/finishing-board"));
 app.use("/rework-kanban-card", require("./routes/rework-kanban-card"));
+app.use("/analyze", require("./routes/analyze"));
 
 app.listen(PORT, console.log(`Server running on http://localhost:${PORT}`));
