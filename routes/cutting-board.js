@@ -13,9 +13,9 @@ let PerformanceAnalyze = require("../models/PerformanceAnalyze");
 router.get("/", async (req, res) => {
   let cuttingData = await cuttingBoard.find({}).lean();
   let inProgress = await CuttingBoardInProgress.find({}).lean();
-  let completed = await CuttingBoardCompleted.limit(5)
-    .find({})
+  let completed = await CuttingBoardCompleted.find({})
     .sort({ published: -1 })
+    .limit(5)
     .lean();
   res.render(path.join(__dirname, "../", "/views/cutting-board"), {
     data: cuttingData,
