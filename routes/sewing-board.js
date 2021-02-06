@@ -9,6 +9,18 @@ let FinishingBoard = require("../models/FinishingBoard");
 let ReworkKanbanCard = require("../models/ReworkKanbanCard");
 let PerformanceAnalyze = require("../models/PerformanceAnalyze");
 
+function checkAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    let data = req.flash("message")[0];
+    res.render(path.join(__dirname, "../", "/views/login"), {
+      message: "",
+      data,
+    });
+  }
+}
+
 //Method = GET
 //Route = /sewing-board
 router.get("/", async (req, res) => {
@@ -27,7 +39,7 @@ router.get("/", async (req, res) => {
   });
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", checkAuth, async (req, res) => {
   let id = req.params.id;
   let deletedCard = await SewingBoard.findOneAndDelete({ id: id }).lean();
   let newInprogressCard = {};
@@ -40,7 +52,7 @@ router.get("/:id", async (req, res) => {
   res.redirect("/sewing-board");
 });
 
-router.get("/completed/:id", async (req, res) => {
+router.get("/completed/:id", checkAuth, async (req, res) => {
   let id = req.params.id;
   let deletedCard = await SewingBoardInProgress.findOneAndDelete({
     id: id,

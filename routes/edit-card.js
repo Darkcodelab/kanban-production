@@ -3,7 +3,19 @@ const path = require("path");
 const cuttingBoardTodo = require("../models/cuttingBoardTodo");
 const SewingBoard = require("../models/SewingBoard");
 
-router.get("/:id", async (req, res) => {
+function checkAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    let data = req.flash("message")[0];
+    res.render(path.join(__dirname, "../", "/views/login"), {
+      message: "",
+      data,
+    });
+  }
+}
+
+router.get("/:id", checkAuth, async (req, res) => {
   let id = req.params.id;
   let card = await SewingBoard.find({ id: id }).lean();
   let card2 = await cuttingBoardTodo.find({ id: id }).lean();
@@ -18,7 +30,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/:id", async (req, res) => {
+router.post("/:id", checkAuth, async (req, res) => {
   let id = req.params.id;
   let card = await SewingBoard.find({ id: id }).lean();
   let card2 = await cuttingBoardTodo.find({ id: id }).lean();

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
+const passport = require("passport");
 
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
@@ -14,14 +15,21 @@ function checkAuth(req, res, next) {
   }
 }
 
-//Method - 'GET'
-//Route - '/'
-router.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render(path.join(__dirname, "../", "/views/index"), { auth: true });
-  } else {
-    res.render(path.join(__dirname, "../", "/views/index"), { auth: false });
-  }
+router.get("/", checkAuth, (req, res) => {
+  res.render(path.join(__dirname, "../", "/views/login"), {
+    message: "",
+    data: "",
+  });
 });
 
+router.post(
+  "/",
+  passport.authenticate("local", {
+    failureFlash: true,
+    failureRedirect: "/login",
+  }),
+  function (req, res) {
+    res.redirect("/");
+  }
+);
 module.exports = router;
