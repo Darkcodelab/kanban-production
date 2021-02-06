@@ -18,10 +18,15 @@ router.get("/", async (req, res) => {
     .sort({ published: -1 })
     .limit(5)
     .lean();
+  let finishing = await AvailableProducts.find({ dept: "finishing" })
+    .sort({ published: -1 })
+    .limit(5)
+    .lean();
   res.render(path.join(__dirname, "../", "/views/available-products"), {
     fabric,
     cutting,
     sewing,
+    finishing,
   });
 });
 
