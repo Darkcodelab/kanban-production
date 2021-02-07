@@ -18,20 +18,27 @@ ul li {
 
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(to right, #acb6e5, #86fde8);
+  /* background: linear-gradient(to right, #acb6e5, #86fde8); */
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
+    url("/images/bg-image.png");
+  /* background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat; */
 }
 
 .container {
   max-width: 1300px;
   margin: 0 auto;
   min-height: 100vh;
-  padding: 0 0.3em;
+  padding: 1em 0.3em;
 }
 
 /*Index Styling*/
 
 .index__header {
-  padding: 1em 0;
+  background: white;
+  padding: 0 12px;
+  border-radius: 5px;
 }
 
 .index__main {
@@ -95,10 +102,12 @@ body {
 /*Production Kanban card*/
 
 .prod__header {
-  padding: 12px 0;
+  padding: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: white;
+  border-radius: 5px;
 }
 
 .navbar a {
@@ -163,7 +172,9 @@ input[type="submit"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 0;
+  padding: 12px;
+  border-radius: 5px;
+  background: white;
 }
 
 .board__header a {
@@ -232,6 +243,11 @@ input[type="submit"] {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 10px;
+}
+
+.available__main h3 {
+  color: white;
+  text-transform: capitalize;
 }
 
 .dept {

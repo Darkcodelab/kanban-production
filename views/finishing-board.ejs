@@ -34,7 +34,7 @@
                 <% for(let key in inProgress[i]) {%> 
                     <div><b><%=key %>:</b>  <%=inProgress[i][key] %>  </div>
                 <% } %>
-                <div class="card__completed"><a href="/finishing-board/completed/<%=inProgress[i].id%>">Completed</a></div>
+                <div class="card__completed"><a id="workcyclecomplete" href="/finishing-board/completed/<%=inProgress[i].id%>">Completed</a></div>
               </li>
             <%}%>
           </ul>
@@ -53,5 +53,15 @@
         </div>
       </main>
     </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      let socket = io();
+      let btn = document.getElementById("workcyclecomplete");
+      btn.addEventListener("click", function() {
+        console.log('clicked')
+        socket.emit('workcycle complete', 'One Work Cycle Completed')
+      })
+      
+    </script>
   </body>
 </html>
