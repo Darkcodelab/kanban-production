@@ -20,7 +20,9 @@
             <% for(let i=0; i<data.length; i++) {%> 
               <li class="card__li">
                 <% for(let key in data[i]) {%>
+                  <% if(key !== 'id') {%> 
                     <div><b><%=key %>:</b>  <%=data[i][key] %>  </div>
+                  <% } %>
                 <% } %>
                 <div class="card__completed"><a href="/cutting-board/<%=data[i].id%>">Completed</a></div>
                 <div class="card__completed"><a href="/edit-card/<%=data[i].id%>">Edit</a></div>
@@ -34,7 +36,9 @@
             <% for(let i=0; i<inProgress.length; i++) {%> 
               <li class="card__li">
                 <% for(let key in inProgress[i]) {%> 
+                  <% if(key !== 'id') {%> 
                     <div><b><%=key %>:</b>  <%=inProgress[i][key] %>  </div>
+                  <% } %>
                 <% } %>
                 <div class="card__completed"><a href="/cutting-board/completed/<%=inProgress[i].id%>">Completed</a></div>
               </li>
@@ -47,7 +51,9 @@
             <% for(let i=0; i<completed.length; i++) {%> 
               <li class="card__li">
                 <% for(let key in completed[i]) {%> 
+                  <% if(key !== 'id') {%> 
                     <div><b><%=key %>:</b>  <%=completed[i][key] %>  </div>
+                  <% } %>
                 <% } %>
               </li>
             <%}%>

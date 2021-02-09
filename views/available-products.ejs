@@ -19,7 +19,9 @@
             <% for(let i=0; i<fabric.length; i++) {%> 
               <li class="card__li">
                 <% for(let key in fabric[i]) {%> 
-                    <div><b><%=key %></b>  <%=fabric[i][key] %>  </div>
+                  <% if(key !== 'id') {%> 
+                    <div><b><%=key %>:</b>  <%=fabric[i][key] %>  </div>
+                  <% } %>
                 <% } %>
               </li>
             <%}%>
@@ -31,7 +33,9 @@
             <% for(let i=0; i<cutting.length; i++) {%> 
               <li class="card__li">
                 <% for(let key in cutting[i]) {%> 
-                    <div><b><%=key %></b>  <%=cutting[i][key] %>  </div>
+                  <% if(key !== 'id') {%> 
+                    <div><b><%=key %>:</b>  <%=cutting[i][key] %>  </div>
+                  <% } %>
                 <% } %>
               </li>
             <%}%>
@@ -43,7 +47,9 @@
             <% for(let i=0; i<sewing.length; i++) {%> 
               <li class="card__li">
                 <% for(let key in sewing[i]) {%> 
-                    <div><b><%=key %></b>  <%=sewing[i][key] %>  </div>
+                  <% if(key !== 'id') {%> 
+                    <div><b><%=key %>:</b>  <%=sewing[i][key] %>  </div>
+                  <% } %>
                 <% } %>
               </li>
             <%}%>
@@ -55,7 +61,9 @@
              <% for(let i=0; i<finishing.length; i++) {%> 
               <li class="card__li">
                 <% for(let key in finishing[i]) {%> 
-                    <div><b><%=key %></b>  <%=finishing[i][key] %>  </div>
+                  <% if(key !== 'id') {%> 
+                    <div><b><%=key %>:</b>  <%=finishing[i][key] %>  </div>
+                  <% } %>
                 <% } %>
               </li>
             <%}%>
