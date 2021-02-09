@@ -21,9 +21,9 @@ function checkAuth(req, res, next) {
 }
 
 router.get("/", async (req, res) => {
-  let data = await FinishingBoard.find({}).lean();
-  let inProgress = await FinishingBoardInProgress.find({}).lean();
-  let completed = await FinishingBoardCompleted.find({})
+  let data = await FinishingBoard.find({}, "-_id -__v").lean();
+  let inProgress = await FinishingBoardInProgress.find({}, "-_id -__v").lean();
+  let completed = await FinishingBoardCompleted.find({}, "-_id -__v")
     .sort({ published: -1 })
     .limit(5)
     .lean();

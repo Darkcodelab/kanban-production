@@ -23,9 +23,9 @@ function checkAuth(req, res, next) {
 //Method = GET
 //Route = /cutting-board
 router.get("/", async (req, res) => {
-  let cuttingData = await cuttingBoard.find({}).lean();
-  let inProgress = await CuttingBoardInProgress.find({}).lean();
-  let completed = await CuttingBoardCompleted.find({})
+  let cuttingData = await cuttingBoard.find({}, "-_id -__v").lean();
+  let inProgress = await CuttingBoardInProgress.find({}, "-_id -__v").lean();
+  let completed = await CuttingBoardCompleted.find({}, "-_id -__v")
     .sort({ published: -1 })
     .limit(5)
     .lean();

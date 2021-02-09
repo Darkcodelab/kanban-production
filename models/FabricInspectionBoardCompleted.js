@@ -41,7 +41,7 @@ let FabricInspectionBoardCompletedSchema = new Schema(
       type: String,
     },
     published: {
-      type: Date,
+      type: String,
       default: ISTTime.toLocaleString(),
     },
   },
