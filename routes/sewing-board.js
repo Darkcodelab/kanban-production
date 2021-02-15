@@ -24,7 +24,7 @@ function checkAuth(req, res, next) {
 //Method = GET
 //Route = /sewing-board
 router.get("/", async (req, res) => {
-  let data = await SewingBoard.find({}, "-_id -__v").lean();
+  let data = await SewingBoard.find({}, "-_id -__v -startedAt").lean();
   let reworkdata = await ReworkKanbanCard.find({}, "-_id -__v").lean();
   let inProgress = await SewingBoardInProgress.find({}, "-_id -__v").lean();
   let completed = await SewingBoardCompleted.find({}, "-_id -__v")
@@ -48,6 +48,8 @@ router.get("/:id", checkAuth, async (req, res) => {
       newInprogressCard[prop] = deletedCard[prop];
     }
   });
+
+  delete newInprogressCard.startedAt;
   let inProgressCard = await SewingBoardInProgress.create(newInprogressCard);
   res.redirect("/sewing-board");
 });

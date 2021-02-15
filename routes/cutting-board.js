@@ -23,7 +23,7 @@ function checkAuth(req, res, next) {
 //Method = GET
 //Route = /cutting-board
 router.get("/", async (req, res) => {
-  let cuttingData = await cuttingBoard.find({}, "-_id -__v").lean();
+  let cuttingData = await cuttingBoard.find({}, "-_id -__v -startedAt").lean();
   let inProgress = await CuttingBoardInProgress.find({}, "-_id -__v").lean();
   let completed = await CuttingBoardCompleted.find({}, "-_id -__v")
     .sort({ createdAt: -1 })
@@ -45,6 +45,7 @@ router.get("/:id", checkAuth, async (req, res) => {
       newInprogressCard[prop] = deletedCard[prop];
     }
   });
+  delete newInprogressCard.startedAt;
   let inProgressCard = await CuttingBoardInProgress.create(newInprogressCard);
   res.redirect("/cutting-board");
 });

@@ -1,12 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
-// var currentTime = new Date();
-// var currentOffset = currentTime.getTimezoneOffset();
-// var ISTOffset = 330; // IST offset UTC +5:30
-// var ISTTime = new Date(
-//   currentTime.getTime() + (ISTOffset + currentOffset) * 60000
-// );
+const moment = require("moment");
 
 let SewingBoardInProgressSchema = new Schema(
   {
@@ -42,9 +36,10 @@ let SewingBoardInProgressSchema = new Schema(
     },
     published: {
       type: String,
-      default: new Date().toLocaleString(undefined, {
-        timeZone: "Asia/Kolkata",
-      }),
+      // default: new Date().toLocaleString(undefined, {
+      //   timeZone: "Asia/Kolkata",
+      // }),
+      default: () => moment().format("llll"),
     },
     createdAt: {
       type: Date,

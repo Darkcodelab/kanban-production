@@ -21,7 +21,7 @@ function checkAuth(req, res, next) {
 }
 
 router.get("/", async (req, res) => {
-  let data = await FinishingBoard.find({}, "-_id -__v").lean();
+  let data = await FinishingBoard.find({}, "-_id -__v -startedAt").lean();
   let inProgress = await FinishingBoardInProgress.find({}, "-_id -__v").lean();
   let completed = await FinishingBoardCompleted.find({}, "-_id -__v")
     .sort({ createdAt: -1 })
@@ -43,6 +43,7 @@ router.get("/:id", checkAuth, async (req, res) => {
       newInprogressCard[prop] = deletedCard[prop];
     }
   });
+  delete newInprogressCard.startedAt;
   let inProgressCard = await FinishingBoardInProgress.create(newInprogressCard);
   res.redirect("/finishing-board");
 });

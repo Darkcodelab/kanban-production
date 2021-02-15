@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const moment = require("moment");
 
 // var currentTime = new Date();
 // var currentOffset = currentTime.getTimezoneOffset();
@@ -42,9 +43,7 @@ let FabricInspectionBoardCompletedSchema = new Schema(
     },
     published: {
       type: String,
-      default: new Date().toLocaleString(undefined, {
-        timeZone: "Asia/Kolkata",
-      }),
+      default: () => moment().format("llll"),
     },
     createdAt: {
       type: Date,

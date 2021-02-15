@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const moment = require("moment");
 
 let cuttingBoardInProgressSchema = new Schema(
   {
@@ -35,9 +36,10 @@ let cuttingBoardInProgressSchema = new Schema(
     },
     startedAt: {
       type: String,
-      default: new Date().toLocaleString(undefined, {
-        timeZone: "Asia/Kolkata",
-      }),
+      // default: new Date().toLocaleString(undefined, {
+      //   timeZone: "Asia/Kolkata",
+      // }),
+      default: () => moment().format("llll"),
     },
   },
   { strict: false }
