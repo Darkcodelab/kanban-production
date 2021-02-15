@@ -33,7 +33,14 @@ let SewingBoardCompletedSchema = new Schema(
     id: {
       type: String,
     },
+    startedAt: {
+      type: String,
+      default: new Date().toLocaleString(undefined, {
+        timeZone: "Asia/Kolkata",
+      }),
+    },
   },
+
   { strict: false }
 );
 

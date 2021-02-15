@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
   let reworkdata = await ReworkKanbanCard.find({}, "-_id -__v").lean();
   let inProgress = await SewingBoardInProgress.find({}, "-_id -__v").lean();
   let completed = await SewingBoardCompleted.find({}, "-_id -__v")
-    .sort({ published: -1 })
+    .sort({ createdAt: -1 })
     .limit(5)
     .lean();
   res.render(path.join(__dirname, "../", "/views/sewing-board"), {

@@ -40,11 +40,19 @@ let PerformanceAnalyzeSchema = new Schema(
     id: {
       type: String,
     },
+    startedAt: {
+      type: String,
+    },
     published: {
-      type: Date,
+      type: String,
       default: new Date().toLocaleString(undefined, {
         timeZone: "Asia/Kolkata",
       }),
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      indexes: { expires: "30d" },
     },
   },
   { strict: false }

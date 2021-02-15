@@ -44,10 +44,14 @@ let AvailableProductsSchema = new Schema(
       type: String,
     },
     published: {
-      type: Date,
+      type: String,
       default: new Date().toLocaleString(undefined, {
         timeZone: "Asia/Kolkata",
       }),
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
     },
   },
   { strict: false }

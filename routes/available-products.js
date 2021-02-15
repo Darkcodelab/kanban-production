@@ -7,22 +7,22 @@ let AvailableProducts = require("../models/AvailableProducts");
 //Route = /available-products
 router.get("/", async (req, res) => {
   let fabric = await AvailableProducts.find({ dept: "fabric" }, "-_id -__v")
-    .sort({ published: -1 })
+    .sort({ createdAt: -1 })
     .limit(5)
     .lean();
   let cutting = await AvailableProducts.find({ dept: "cutting" }, "-_id -__v")
-    .sort({ published: -1 })
+    .sort({ createdAt: -1 })
     .limit(5)
     .lean();
   let sewing = await AvailableProducts.find({ dept: "sewing" }, "-_id -__v")
-    .sort({ published: -1 })
+    .sort({ createdAt: -1 })
     .limit(5)
     .lean();
   let finishing = await AvailableProducts.find(
     { dept: "finishing" },
     "-_id -__v"
   )
-    .sort({ published: -1 })
+    .sort({ createdAt: -1 })
     .limit(5)
     .lean();
   res.render(path.join(__dirname, "../", "/views/available-products"), {
