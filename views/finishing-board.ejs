@@ -25,14 +25,14 @@
                     <% } %> 
                   <% } %>
                 <% } %>
-                <div class="card__completed"><a href="/finishing-board/<%=data[i].id%>">Start</a></div>
+                <div class="card__completed"><a class="start__card" href="/finishing-board/<%=data[i].id%>">Start</a></div>
               </li>
             <%}%>
           </ul>
         </div>
         <div class="board_inprogress">
           <h3>In Progess</h3>
-          <ul class="board__card">
+          <ul class="board__card" id="InProgressContainer">
             <% for(let i=0; i<inProgress.length; i++) {%> 
               <li class="card__li">
                 <% for(let key in inProgress[i]) {%> 
@@ -74,6 +74,25 @@
         socket.emit('workcycle complete', 'One Work Cycle Completed')
       })
       
+    </script>
+    <script>
+      let InProgressContainer = document.getElementById("InProgressContainer");
+      let InProgressLength = InProgressContainer.children.length;
+      let startCard = document.getElementsByClassName('start__card')
+
+      fetch('/task-limit').then(response => response.json()).then(data => {
+          if(InProgressLength >= data.limit) {
+            for(let i=0; i<startCard.length; i++) {
+              startCard[i].style.pointerEvents = 'none'
+              startCard[i].innerText = 'Limit Exceeded'
+            }
+          }else {
+            for(let i=0; i<startCard.length; i++) {
+              startCard[i].style.pointerEvents = 'all'
+              startCard[i].innerText = 'Start';
+            }
+          }
+      })
     </script>
   </body>
 </html>

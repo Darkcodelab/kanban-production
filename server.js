@@ -13,6 +13,7 @@ const http = require("http").Server(app);
 const io = require("socket.io")(http);
 
 io.on("connection", (socket) => {
+  socket.setMaxListeners(20);
   socket.on("workcycle complete", (msg) => {
     io.emit("workcycle complete", msg);
   });
@@ -76,5 +77,6 @@ app.use("/edit-card", require("./routes/edit-card"));
 app.use("/login", require("./routes/login"));
 app.use("/register", require("./routes/register"));
 app.use("/logout", require("./routes/logout"));
+app.use("/task-limit", require("./routes/task-limit"));
 
 http.listen(PORT, console.log(`Server running on http://localhost:${PORT}`));
