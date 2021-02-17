@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const path = require("path");
 let PerformanceAnalyze = require("../models/PerformanceAnalyze");
+let moment = require("moment");
 
 router.get("/", async (req, res) => {
   let fabric = await PerformanceAnalyze.find({ dept: "fabric" }, "-_id -__v")
@@ -27,6 +28,7 @@ router.get("/", async (req, res) => {
     cutting,
     sewing,
     finishing,
+    moment,
   });
 });
 
