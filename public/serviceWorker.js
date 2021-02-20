@@ -50,15 +50,15 @@ self.addEventListener("fetch", (event) => {
           return cachedResponse;
         }
         return caches.open("runtime").then((cache) => {
-          if (event.request.method == "GET") {
-            return fetch(event.request).then((response) => {
-              return cache.put(event.request, response.clone()).then(() => {
-                return response;
-              });
-            });
-          } else {
-            return fetch(event.request);
-          }
+          // if (event.request.method == "GET") {
+          //   return fetch(event.request).then((response) => {
+          //     return cache.put(event.request, response.clone()).then(() => {
+          //       return response;
+          //     });
+          //   });
+          // } else {
+          return fetch(event.request);
+          // }
         });
       })
     );
