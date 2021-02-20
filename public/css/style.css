@@ -278,3 +278,44 @@ input[type="submit"] {
   align-self: center;
   margin-top: 120px;
 }
+
+@media screen and (max-width: 1024px) {
+  .available__main {
+    grid-template-columns: 1fr;
+  }
+
+  .dept {
+    overflow: hidden;
+  }
+
+  .dept ul {
+    display: flex;
+    margin-top: 16px;
+    overflow: scroll;
+  }
+
+  .dept ul li {
+    /* width: 300px; */
+    flex: 0 0 300px;
+    margin: 0 12px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .index__main {
+    grid-template-columns: 1fr;
+  }
+
+  .board__main {
+    grid-template-columns: 1fr;
+  }
+
+  .board__header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .board__header * {
+    margin: 12px 0;
+  }
+}
