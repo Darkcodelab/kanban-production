@@ -17,10 +17,24 @@ io.on("connection", (socket) => {
   socket.on("workcycle complete", (msg) => {
     io.emit("workcycle complete", msg);
   });
+  socket.on("dept completed", (msg) => {
+    io.emit("dept completed", msg);
+  });
   io.on("disconnect", () => {
     console.log("a user disconnected");
   });
 });
+
+//Web Push
+const webPush = require("web-push");
+const publicKey = process.env.PUBLIC_KEY;
+const privateKey = process.env.PRIVATE_KEY;
+
+webPush.setVapidDetails(
+  "mailto: deepanchakravarthi434@gmail.com",
+  publicKey,
+  privateKey
+);
 
 //Sessions
 const session = require("express-session");
@@ -78,5 +92,6 @@ app.use("/login", require("./routes/login"));
 app.use("/register", require("./routes/register"));
 app.use("/logout", require("./routes/logout"));
 app.use("/task-limit", require("./routes/task-limit"));
+app.use("/subscribe", require("./routes/subscribe"));
 
 http.listen(PORT, console.log(`Server running on http://localhost:${PORT}`));

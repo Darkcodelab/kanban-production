@@ -5,6 +5,11 @@ let PRECACHE_URLS = [
   "/serviceWorker.js",
 ];
 
+self.addEventListener("push", (e) => {
+  const data = e.data.json();
+  self.registration.showNotification(data.title);
+});
+
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches

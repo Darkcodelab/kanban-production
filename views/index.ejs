@@ -70,6 +70,9 @@
         document.getElementById("notification").play();
         alert(msg);
       });
+      socket.on("dept completed", (msg) => {
+        alert(msg);
+      });
     </script>
     <script src="/js/config.js"></script>
   </body>
