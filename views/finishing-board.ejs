@@ -64,6 +64,7 @@
           </ul>
         </div>
       </main>
+      <audio id="notification" src="/sounds/notification.mp3" muted></audio>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -72,9 +73,12 @@
       if(btn) {
         btn.addEventListener("click", function() {
           socket.emit('workcycle complete', 'One Work Cycle Completed')
+          socket.emit('dept completed', 'One Work Cycle Completed')
         })
       }
       socket.on("dept completed", (msg) => {
+        document.getElementById("notification").muted = false;
+        document.getElementById("notification").play();
         const publicKey =
   "BGHOaZknsPZZUOs5Nc4LixnkLJHGh0bpdeTB1jQ_tQnjomRwFvlU1hBKnP7FFfUZpDl2CMu5pH59xEJ-fpSYbT8";
 
