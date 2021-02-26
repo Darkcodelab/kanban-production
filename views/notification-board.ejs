@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PEE Empro | Notification Board</title>
     <%- include("./partials/head.ejs") %>
+    <link rel="stylesheet" href="/css/style2.css">
   </head>
   <body>
     <div class="container">
@@ -14,8 +15,15 @@
         <a href="/" class="nav-link">Home</a>
       </header>
       <main>
-        <button id="deleteNotifications">Delete All</button>
-        <ul id="notificationMain" class="notification__main"></ul>
+        <a href="/notification-board/deleteall" id="deleteNotifications">Delete All</a>
+        <ul id="notificationMain" class="notification__main">
+          <% for(let i=0; i<data.length; i++){ %>
+          <li>
+            <%= data[i].dept %>
+            <p><%=data[i].published%></p>
+          </li>
+          <% } %>
+        </ul>
       </main>
       <audio id="notification" src="/sounds/notification.mp3" muted></audio>
     </div>

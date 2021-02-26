@@ -7,6 +7,7 @@ let FinishingBoard = require("../models/FinishingBoard");
 let FinishingBoardInProgress = require("../models/FinishingBoardInProgress");
 let FinishingBoardCompleted = require("../models/FinishingBoardCompleted");
 let PerformanceAnalyze = require("../models/PerformanceAnalyze");
+let NotificationBoard = require("../models/NotificationBoard");
 
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
@@ -70,6 +71,10 @@ router.get("/completed/:id", checkAuth, async (req, res) => {
   delete newCompletedCard._id;
 
   let performance = await PerformanceAnalyze.create(newCompletedCard);
+  let notificationData = {
+    dept: "One task completed by Finishing Department",
+  };
+  let notifiction = await NotificationBoard.create(notificationData);
   res.redirect("/finishing-board");
 });
 

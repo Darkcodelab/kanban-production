@@ -7,6 +7,7 @@ const FabricInspectionBoardCompleted = require("../models/FabricInspectionBoardC
 const cuttingBoardTodo = require("../models/cuttingBoardTodo");
 let AvailableProducts = require("../models/AvailableProducts");
 let PerformanceAnalyze = require("../models/PerformanceAnalyze");
+let NotificationBoard = require("../models/NotificationBoard");
 
 function checkAuth(req, res, next) {
   if (req.isAuthenticated()) {
@@ -71,6 +72,10 @@ router.get("/completed/:id", checkAuth, async (req, res) => {
   let availableCard = await AvailableProducts.create(newCompletedCard);
   delete newCompletedCard._id;
   let performance = await PerformanceAnalyze.create(newCompletedCard);
+  let notificationData = {
+    dept: "One task completed by Fabric Inspection Department",
+  };
+  let notifiction = await NotificationBoard.create(notificationData);
 
   res.redirect("/fabric-inspection-board");
 });
